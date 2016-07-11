@@ -34,7 +34,7 @@
 </head>
 <body>
 ----------------------------
-TEST11
+TEST12
 ----------------------------
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -192,7 +192,7 @@ tableEntry.entry=entry;
             {
                 //url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid + '?alt=json&access_token=' + tableEntry.access_token,
                 url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid,
-                dataType: 'json',
+                dataType: 'jsonp',
                 //method:'PUT',
                 method:'POST',
                 headers:{ 
