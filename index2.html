@@ -70,6 +70,7 @@ console.log('3');
 						user_id: id,
 						access_token: t.access_token
 					};
+console.dir(JSON.stringify(return_val));				
 					window.top.postMessage("album_data:"+JSON.stringify(return_val), '*');
 				}			
 				
