@@ -181,7 +181,7 @@ tableEntry.entry=entry;
         		url = 'change_permission.php',
         		new_access = jQuery(e.target).attr('data-permission');
         	
-        	alert(new_access);
+        	console.log(new_access);
         	
         	tableEntries[index].entry.rights.$t=new_access;
         	console.dir(tableEntries[index].entry);
@@ -190,8 +190,8 @@ tableEntry.entry=entry;
         	
         jQuery.ajax(
             {
-                //url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid + '?alt=json&access_token=' + tableEntry.access_token,
-                uri: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid,
+                url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid + '?alt=json&access_token=' + tableEntry.access_token,
+                // uri: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid,
                 dataType: 'json',
                 //method:'PUT',
                 method:'POST',
