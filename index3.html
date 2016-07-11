@@ -33,7 +33,7 @@
     </style>
 </head>
 <body>
-TEST7
+TEST8
 
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -192,8 +192,8 @@ tableEntry.entry=entry;
                 url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid + '?alt=json&access_token=' + tableEntry.access_token,
                 //uri: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid + '?alt=json&access_token=' + tableEntry.access_token,
                 dataType: 'json',
-                // method:'PUT',
-                method:'POST',
+                method:'PUT',
+                //method:'POST',
                 headers:{ 
                     'GData-Version': '2'
                     // 'Authorization':'Bearer' + ' ' + token
