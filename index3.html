@@ -34,7 +34,7 @@
 </head>
 <body>
 ----------------------------
-TEST14
+TEST15
 ----------------------------
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -188,6 +188,9 @@ tableEntry.entry=entry;
         	
         	var data=tableEntries[index].entry;
         	
+        	console.log(JSON.stringify(data));
+        	
+        	
         jQuery.ajax(
             {
                 url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid + '?alt=json&access_token=' + tableEntry.access_token,
@@ -197,7 +200,7 @@ tableEntry.entry=entry;
                 //method:'POST',
                 headers:{ 
                     'GData-Version': '2',
-                    // 'Authorization': 'Bearer' + ' ' + tableEntry.access_token
+                    'Authorization': 'Bearer' + ' ' + tableEntry.access_token
                     // 'Authorization':'Bearer' + ' ' + token
                     //"Content-Type":'image/jpeg',
                     //'Content-Length':data.length,
