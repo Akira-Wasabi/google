@@ -33,7 +33,7 @@
     </style>
 </head>
 <body>
-TEST3
+TEST4
 
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -184,6 +184,19 @@ tableEntry.entry=entry;
         	
         	tableEntries[index].entry.rights.$t=new_access;
         	console.dir(tableEntries[index].entry);
+        	
+        	
+        	        jQuery.ajax(
+            {
+                url: 'https://picasaweb.google.com/data/feed/api/user/' + profile.getId() + '/albumid/' + + '?alt=json&access=all&access_token=' + access_token,
+                dataType: 'json',
+                method:'PUT',
+                success: function(data){
+                    alert('ok');
+                }
+        });        
+console.log('finished');
+        	
         	
         	return;
         	
