@@ -72,12 +72,19 @@ console.log('3');
 					};
 console.dir(JSON.stringify(return_val));				
 					window.top.postMessage("album_data:"+JSON.stringify(return_val), '*');
-gapi.client.plus.people.get({userId: 'me'}).execute(handleEmailResponse);					
+
+gapi.client.load('plus', 'v1', apiClientLoaded);
+//gapi.client.plus.people.get({userId: 'me'}).execute(handleEmailResponse);					
 				}			
 				
 				
 			});
 		}
+		
+		function apiClientLoaded() {
+    			gapi.client.plus.people.get({userId: 'me'}).execute(handleEmailResponse);
+  		}		
+		
 		
 		function handleEmailResponse(resp) {
     		var primaryEmail;
