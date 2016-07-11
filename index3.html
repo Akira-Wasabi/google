@@ -178,6 +178,9 @@ console.dir(data);
         		url = 'change_permission.php',
         		new_access = jQuery(e.target).attr('data-permission');
         	
+        	alert(new_access);
+        	return;
+        	
         	$.ajax({
 			  url: url,
 			  dataType: 'json',
