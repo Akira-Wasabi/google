@@ -33,7 +33,7 @@
     </style>
 </head>
 <body>
-TEST2
+TEST3
 
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -181,7 +181,10 @@ tableEntry.entry=entry;
         		new_access = jQuery(e.target).attr('data-permission');
         	
         	alert(new_access);
+        	
+        	tableEntries[index].entry.rights.$t=new_access;
         	console.dir(tableEntries[index].entry);
+        	
         	return;
         	
         	$.ajax({
