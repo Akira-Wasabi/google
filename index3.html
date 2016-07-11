@@ -34,7 +34,7 @@
 </head>
 <body>
 ----------------------------
-TEST9
+TEST10
 ----------------------------
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -209,7 +209,11 @@ tableEntry.entry=entry;
                 success: function(data){
                 	console.dir(data);
                     alert('ok');
-                }
+                },
+                fail: function (jqXHR, textStatus) {
+    			console.log('fail');
+    			console.dir(jqXHR);
+		}
         });        
 console.log('finished');
         	
