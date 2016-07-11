@@ -44,26 +44,28 @@
 	<div onclick="dosignin();return false;" title="Album Rights" id="ozio-button-albumpublish">click</div>
     <script>
 		gapi.load('auth2', function() {
-		
+console.log('0');		
 		
 		  auth2 = gapi.auth2.init({
 			// client_id: '56895055742-olge5bb1ckngu6km6vt027qm7uiqtuk6.apps.googleusercontent.com',
 			client_id: '992551522822-7nstfoq17gn0u27kmcfcgnnfbp13ndl3.apps.googleusercontent.com',
 			fetch_basic_profile: false,
 			scope: 'profile https://picasaweb.google.com/data/'			
-		  });
+console.log('0a');
+		});
 		  
 		});
 		function dosignin(){
 			auth2.signIn({prompt: 'select_account'}).then(function(resp) {
 				var googleuser =auth2.currentUser.get();
-
+console.log('1');
 				var id = googleuser.getId();
 				var t = googleuser.getAuthResponse();
-
+console.log('2');
 				if (t && t.access_token){
 					//ok abbiamo l'access token
-					var return_val={
+console.log('3');
+						var return_val={
 						status: true,
 						user_id: id,
 						access_token: t.access_token
