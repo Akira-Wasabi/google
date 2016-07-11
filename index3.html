@@ -33,7 +33,7 @@
     </style>
 </head>
 <body>
-TEST1
+TEST2
 
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -87,6 +87,7 @@ console.dir(data);
                             }
                         }
 
+tableEntry.entry=entry;
                         tableEntry.userid = userid;
                         tableEntry.title = title;
                         tableEntry.albumid = albumid;
@@ -180,6 +181,7 @@ console.dir(data);
         		new_access = jQuery(e.target).attr('data-permission');
         	
         	alert(new_access);
+        	console.dir(tableEntries[index].entry);
         	return;
         	
         	$.ajax({
