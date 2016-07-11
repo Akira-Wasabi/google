@@ -1,0 +1,268 @@
+<!--
+
+/*
+ *
+ * Copyright 2015 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google+ JavaScript Quickstart</title>
+  <script src="https://apis.google.com/js/client:platform.js?onload=startApp" async defer></script>
+  <!-- JavaScript specific to this application that is not related to API
+     calls -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" ></script>
+  <script src="http://nanogallery.brisbois.fr/jquery.jsonp.js" ></script>
+  <meta name="google-signin-client_id" content="992551522822-kfpg3ai0u498m30ekkfn2oeadaqd87c3.apps.googleusercontent.com"></meta>
+</head>
+<body>
+  <h1>TEST15</h1>
+  <div id="gConnect">
+    <!-- GOOGLE OAUTH GOOGLE+ SAMPLE: https://developers.google.com/+/web/samples/javascript -->
+    Please sign-in with Google+ to retrieve your user ID and the list of albums<br>
+    <div id="signin-button"></div>
+  </div>
+  
+  <div id="authOps" style="display:none">
+    <div id='lstGoogleAlbums'></div>
+    <button id="disconnect" >Disconnect your Google account from this page.</button>
+  </div>
+  
+  <div id="loaderror">
+  </div>
+
+  <script type="text/javascript">
+    var auth2 = {};
+    var helper = (function() {
+      return {
+    /**
+     * Hides the sign in button and starts the post-authorization operations.
+     *
+     * @param {Object} authResult An Object which contains the access token and
+     *   other authentication information.
+     */
+    onSignInCallback: function(authResult) {
+      $('#authResult').html('Auth Result:<br/>');
+      for (var field in authResult) {
+        $('#authResult').append(' ' + field + ': ' +
+            authResult[field] + '<br/>');
+      }
+      
+      if (authResult.isSignedIn.get()) {
+        $('#authOps').show('slow');
+        $('#gConnect').hide();
+        helper.profile(authResult);
+        helper.people();
+      } else if (authResult['error'] ||
+          authResult.currentUser.get().getAuthResponse() == null) {
+        // There was an error, which means the user is not signed in.
+        // As an example, you can handle by writing to the console:
+        console.log('There was an error: ' + authResult['error']);
+        $('#authResult').append('Logged out');
+        $('#authOps').hide('slow');
+        $('#gConnect').show();
+      }
+
+      console.log('authResult', authResult);
+    },
+
+        /**
+         * Calls the OAuth2 endpoint to disconnect the app for the user.
+         */
+        disconnect: function() {
+          // Revoke the access token.
+          auth2.disconnect();
+          $('#authOps').hide('slow');
+          $('#gConnect').show();
+        },
+
+        /**
+         * Gets and renders the list of people visible to this app.
+         */
+        people: function() {
+          //console.log('ok3');
+          //console.dir(gapi.auth.getToken().access_token);
+          gapi.client.plus.people.list({
+            'userId': 'me',
+            'collection': 'visible'
+          }).then(function(res) {
+            var people = res.result;
+            $('#visiblePeople').empty();
+            $('#visiblePeople').append('Number of people visible to this app: ' +
+                people.totalItems + '<br/>');
+            for (var personIndex in people.items) {
+              person = people.items[personIndex];
+              $('#visiblePeople').append('<img src="' + person.image.url + '">');
+            }
+          });
+        },
+
+        /**
+         * Gets and renders the currently signed in user's profile data.
+         */
+        profile: function(gai){
+          gapi.client.plus.people.get({
+            'userId': 'me'
+          }).then(function(res) {
+            var profile = res.result;
+
+            console.log('test6');
+
+
+            var gID=profile.id;
+            // gai.currentUser.get().getAuthResponse().id_toke
+            // gapi.auth.getToken().access_token
+            var at=gai.currentUser.get().getAuthResponse().id_token;
+            //var url = 'https://photos.googleapis.com/data/feed/api/user/'+gID+'?alt=json&kind=album&access=all&access_token='+at+'&rnd=' + (new Date().getTime());
+            // var url = 'https://photos.googleapis.com/data/feed/api/user/'+gID+'?alt=json&kind=album&access=all&access_token='+at;
+            var url = 'https://photos.googleapis.com/data/feed/api/user/'+gID+'?kind=album&access=all&access_token='+at;
+
+    //        $.ajaxSetup({ cache: false, headers: { 'GData-Version': '2' }, dataType: 'jsonp' });
+            //$.ajaxSetup({ cache: false, dataType: 'jsonp' });
+    //        $.support.cors = true;
+    //        $.getJSON(url, function(data, status, xhr) {
+    //          var source = data.feed.entry;
+    //          var lst='Albums for '+data.feed.author[0].name.$t+' (userID:'+gID+'):<br><br>';
+    //          lst+='<table><thead><tr><th>Album</th><th>Album ID</th></tr></thead><tbody>';
+    //console.dir(source);
+    //          $.each(source, function(i,data){
+    //            //Get the title
+    //            var itemTitle = data.media$group.media$title.$t;
+    //            //Get the ID
+    //            var itemID = data.gphoto$id.$t;
+    //            lst+='<tr><td>'+itemTitle + '</td><td>' + itemID + '</td></tr>';
+    //          });
+    //          lst+='</tbody></table>';
+    //          $('#lstGoogleAlbums').html(lst);
+    //        })
+    //        .fail( function(jqxhr, textStatus, error) {
+    //          var err = textStatus + ', ' + error;
+    //          alert("Could not retrieve the albums: " + err);
+    //        });
+            
+            // url+='&callback=?';
+            //$.ajax({
+            $.jsonp({
+              // url: 'http:ww.abc.com?callback=?',
+              url: url,
+              dataType: 'JSONP',
+              headers: { 'GData-Version': '2' },
+              // jsonpCallback: 'callbackFnc',
+              type: 'GET',
+              // async: false,
+              crossDomain: true,
+              success: function (data, status) {
+              var source = data.feed.entry;
+              var lst='Albums for '+data.feed.author[0].name.$t+' (userID:'+gID+'):<br><br>';
+              lst+='<table><thead><tr><th>Album</th><th>Album ID</th></tr></thead><tbody>';
+    console.dir(source);
+                $.each(source, function(i,data){
+                  //Get the title
+                  var itemTitle = data.media$group.media$title.$t;
+                  //Get the ID
+                  var itemID = data.gphoto$id.$t;
+                  lst+='<tr><td>'+itemTitle + '</td><td>' + itemID + '</td></tr>';
+                });
+                lst+='</tbody></table>';
+                $('#lstGoogleAlbums').html(lst);
+              },
+              error: function (jqxhr, textStatus, error) {
+                var err = textStatus + ', ' + error;
+                alert("Could not retrieve the albums: " + err);
+              },
+              complete: function (data) {
+                  if (data.readyState == '4' && data.status == '200') {
+                    // errorLog.push({ IP: Host, Status: 'SUCCESS' })
+                    // alert('SUCCESS');
+                  }
+                  else {
+                    // errorLog.push({ IP: Host, Status: 'FAIL' })
+                    // alert('FAIL');
+                  }
+              }
+            });
+
+
+            $('#profile').empty();
+          }, function(err) {
+            var error = err.result;
+            $('#profile').empty();
+            $('#profile').append(error.message);
+          });
+        }
+      };
+    })();
+
+    /**
+    * jQuery initialization
+    */
+    $(document).ready(function() {
+      $('#disconnect').click(helper.disconnect);
+      $('#loaderror').hide();
+      if ($('meta')[0].content == 'YOUR_CLIENT_ID') {
+        alert('This sample requires your OAuth credentials (client ID) ' +
+            'from the Google APIs console:\n' +
+            '    https://code.google.com/apis/console/#:access\n\n' +
+            'Find and replace YOUR_CLIENT_ID with your client ID.'
+        );
+      }
+    });
+
+    /**
+     * Handler for when the sign-in state changes.
+     *
+     * @param {boolean} isSignedIn The new signed in state.
+     */
+    var updateSignIn = function() {
+      console.log('update sign in state');
+      if (auth2.isSignedIn.get()) {
+        console.log('signed in');
+        console.dir(auth2);
+        console.dir(gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token);
+        helper.onSignInCallback(gapi.auth2.getAuthInstance());
+      }else{
+        console.log('signed out');
+        helper.onSignInCallback(gapi.auth2.getAuthInstance());
+      }
+    }
+
+    /**
+    * This method sets up the sign-in listener after the client library loads.
+    */
+    function startApp() {
+      gapi.load('auth2', function() {
+        gapi.client.load('plus','v1').then(function() {
+          gapi.signin2.render('signin-button', {
+              //scope: 'https://www.googleapis.com/auth/plus.login https://picasaweb.google.com/data/ https://www.googleapis.com/auth/userinfo.email',
+              scope: 'profile https://picasaweb.google.com/data/',
+              fetch_basic_profile: false });
+          gapi.auth2.init({fetch_basic_profile: false,
+              //scope:'https://www.googleapis.com/auth/plus.login https://picasaweb.google.com/data/ https://www.googleapis.com/auth/userinfo.email'}).then(
+              scope:'profile https://picasaweb.google.com/data/'}).then(
+                function (){
+                  console.log('init2');
+                  auth2 = gapi.auth2.getAuthInstance();
+                  auth2.isSignedIn.listen(updateSignIn);
+                  auth2.then(updateSignIn());
+                });
+      });
+    });
+  }
+</script>
+</body>
+</html>
