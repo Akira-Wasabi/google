@@ -38,7 +38,7 @@ https://accounts.google.com/o/oauth2/auth?openid.realm&scope=email profile openi
 </head>
 <body>
 ----------------------------
-TEST29
+TEST30
 ----------------------------
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -229,8 +229,8 @@ if( title == 'test') {
                 success: function(data){
                     console.log('---success--');
                 	
-                	console.log('rights: '+data.feed.rights.$t)
                 	console.dir(data);
+                	console.log('rights: '+data.feed.rights.$t)
 return;
                 	data.feed.rights.$t='public';
                 	
