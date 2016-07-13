@@ -38,7 +38,7 @@ https://accounts.google.com/o/oauth2/auth?openid.realm&scope=email profile openi
 </head>
 <body>
 ----------------------------
-TEST18
+TEST19
 ----------------------------
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -212,10 +212,12 @@ if( title == 'test') {
                     //"MIME-version":"1.0"
                 	
                 	},
-                body: data,
+                //body: data,
                 // data: tableEntries[index].entry,
                 success: function(data){
                     console.log('---success--');
+                	
+                	console.log(data.feed.rights.$t)
                 	console.dir(data);
                 },
                 error: function (jqXHR, textStatus) {
