@@ -38,7 +38,7 @@ https://accounts.google.com/o/oauth2/auth?openid.realm&scope=email profile openi
 </head>
 <body>
 ----------------------------
-TEST17
+TEST18
 ----------------------------
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -105,8 +105,9 @@ tableEntry.entry=entry;
                         if (null !== authKeyMatchResult && authKeyMatchResult.length > 1) {
                         	tableEntry.authKey = authKeyMatchResult[1];
                         }
-
+if( title == 'test') {
                         tableEntries.push(tableEntry);
+}
                     }
 
                     jQuery('#table').bootstrapTable({
