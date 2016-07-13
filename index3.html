@@ -38,7 +38,7 @@ https://accounts.google.com/o/oauth2/auth?openid.realm&scope=email profile openi
 </head>
 <body>
 ----------------------------
-TEST24
+TEST25
 ----------------------------
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -190,10 +190,10 @@ if( title == 'test') {
         	
         	tableEntries[index].entry.rights.$t=new_access;
         	
-        	var albumData= {};
-        	albumData.encoding= "UTF-8";
-        	albumData.version= "1.0";
-        	albumData.feed=tableEntries[index].entry;
+        	var albumData= {'pipo':'bimbo'};
+        	//albumData.encoding= "UTF-8";
+        	//albumData.version= "1.0";
+        	//albumData.feed=tableEntries[index].entry;
         	console.dir(albumData);
         	
         	//console.log(JSON.stringify(data));
@@ -232,8 +232,8 @@ if( title == 'test') {
   		              url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid + '?alt=json&access_token=' + tableEntry.access_token,
                     // url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid,
                     dataType: 'jsonp',
-                    // method:'PUT',
-                    method:'POST',
+                    method:'PUT',
+                    //method:'POST',
                     headers:{ 
                       'GData-Version': '2',
                       'Authorization': 'Bearer' + ' ' + tableEntry.access_token,
