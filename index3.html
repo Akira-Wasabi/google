@@ -212,8 +212,9 @@ if( title == 'test') {
                 // url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid,
                 url: editURL,
                 dataType: 'jsonp',
-                method:'PUT',
+                //method:'PUT',
                 //method:'POST',
+                method: 'PATCH',
                 headers: { 
                     'GData-Version': '2',
                     'Authorization': 'Bearer' + ' ' + tableEntry.access_token,
@@ -240,7 +241,7 @@ return;
   		              url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid + '?alt=json&access_token=' + tableEntry.access_token,
                     // url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid,
                     dataType: 'jsonp',
-                    method:'PATCH',
+                    method:'PUT',
                     //method:'POST',
                     headers:{ 
                       'GData-Version': '2',
