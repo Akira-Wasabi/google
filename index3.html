@@ -38,7 +38,7 @@ https://accounts.google.com/o/oauth2/auth?openid.realm&scope=email profile openi
 </head>
 <body>
 ----------------------------
-TEST19
+TEST20
 ----------------------------
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -189,11 +189,12 @@ if( title == 'test') {
         	console.log(new_access);
         	
         	tableEntries[index].entry.rights.$t=new_access;
-        	console.dir(tableEntries[index].entry);
         	
-        	var data=tableEntries[index].entry;
+        	var albumData= null;
+        	albumData.feed=tableEntries[index].entry;
+        	console.dir(albumData);
         	
-        	console.log(JSON.stringify(data));
+        	//console.log(JSON.stringify(data));
         	
         	
         jQuery.ajax(
@@ -214,10 +215,11 @@ if( title == 'test') {
                 	},
                 //body: data,
                 // data: tableEntries[index].entry,
+                data: albumData,
                 success: function(data){
                     console.log('---success--');
                 	
-                	console.log(data.feed.rights.$t)
+                	console.log('rights: '+data.feed.rights.$t)
                 	console.dir(data);
                 },
                 error: function (jqXHR, textStatus) {
