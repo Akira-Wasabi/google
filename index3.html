@@ -38,7 +38,7 @@ https://accounts.google.com/o/oauth2/auth?openid.realm&scope=email profile openi
 </head>
 <body>
 ----------------------------
-TEST32
+TEST33
 ----------------------------
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -192,7 +192,7 @@ if( title == 'test') {
         	
         	console.dir(tableEntries[index].entry);
         	
-        	var editURL=tableEntries[index].entry.link[3].href+'&access_token=' + tableEntry.access_token;
+        	var editURL=tableEntries[index].entry.link[3].href;		//+'&access_token=' + tableEntry.access_token;
         	console.log(editURL);
         	console.log(tableEntries[index].entry.link[3].rel);
         	
@@ -213,9 +213,9 @@ if( title == 'test') {
                 dataType: 'jsonp',
                 method:'PUT',
                 //method:'POST',
-                headers:{ 
+                headers: { 
                     'GData-Version': '2',
-                    //'Authorization': 'Bearer' + ' ' + tableEntry.access_token,
+                    'Authorization': 'Bearer' + ' ' + tableEntry.access_token,
                     'If-Match': '*'
                     // 'Authorization':'Bearer' + ' ' + token
                     //"Content-Type":'image/jpeg',
@@ -230,7 +230,7 @@ if( title == 'test') {
                     console.log('---success--');
                 	
                 	console.dir(data);
-                	console.log('rights: '+data.feed.rights.$t)
+                	console.log('rights: '+data.entry.rights.$t)
 return;
                 	data.feed.rights.$t='public';
                 	
