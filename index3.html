@@ -212,11 +212,11 @@ if( title == 'test') {
                     //"MIME-version":"1.0"
                 	
                 	},
-                // body: data,
-                data: tableEntries[index].entry,
+                body: data,
+                // data: tableEntries[index].entry,
                 success: function(data){
+                    console.log('---success--');
                 	console.dir(data);
-                    alert('ok');
                 },
                 error: function (jqXHR, textStatus) {
     			console.log('fail');
