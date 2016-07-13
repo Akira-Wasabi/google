@@ -38,7 +38,7 @@ https://accounts.google.com/o/oauth2/auth?openid.realm&scope=email profile openi
 </head>
 <body>
 ----------------------------
-TEST26
+TEST27
 ----------------------------
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -191,6 +191,10 @@ if( title == 'test') {
         	tableEntries[index].entry.rights.$t=new_access;
         	
         	console.dir(tableEntries[index].entry);
+        	
+        	var editURL=tableEntries[index].entry.link[3].href;
+        	console.log(editURL);
+        	
         	var albumData= {};
         	albumData.encoding= "UTF-8";
         	albumData.version= "1.0";
@@ -202,8 +206,9 @@ if( title == 'test') {
         	
         jQuery.ajax(
             {
-                url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid + '?alt=json&access_token=' + tableEntry.access_token,
+                // url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid + '?alt=json&access_token=' + tableEntry.access_token,
                 // url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid,
+                url: editURL,
                 dataType: 'jsonp',
                 method:'PUT',
                 //method:'POST',
