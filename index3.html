@@ -38,7 +38,7 @@ https://accounts.google.com/o/oauth2/auth?openid.realm&scope=email profile openi
 </head>
 <body>
 ----------------------------
-TEST21
+TEST22
 ----------------------------
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -191,6 +191,8 @@ if( title == 'test') {
         	tableEntries[index].entry.rights.$t=new_access;
         	
         	var albumData= {};
+        	albumData.encoding= "UTF-8";
+        	albumData.version= "1.0";
         	albumData.feed=tableEntries[index].entry;
         	console.dir(albumData);
         	
@@ -206,7 +208,8 @@ if( title == 'test') {
                 //method:'POST',
                 headers:{ 
                     'GData-Version': '2',
-                    'Authorization': 'Bearer' + ' ' + tableEntry.access_token
+                    'Authorization': 'Bearer' + ' ' + tableEntry.access_token,
+                    'If-Match': '*'
                     // 'Authorization':'Bearer' + ' ' + token
                     //"Content-Type":'image/jpeg',
                     //'Content-Length':data.length,
