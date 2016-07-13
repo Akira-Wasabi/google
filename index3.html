@@ -38,7 +38,7 @@ https://accounts.google.com/o/oauth2/auth?openid.realm&scope=email profile openi
 </head>
 <body>
 ----------------------------
-TEST23
+TEST24
 ----------------------------
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -232,8 +232,8 @@ if( title == 'test') {
   		              url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid + '?alt=json&access_token=' + tableEntry.access_token,
                     // url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid,
                     dataType: 'jsonp',
-                    method:'PUT',
-                    //method:'POST',
+                    // method:'PUT',
+                    method:'POST',
                     headers:{ 
                       'GData-Version': '2',
                       'Authorization': 'Bearer' + ' ' + tableEntry.access_token,
@@ -246,10 +246,10 @@ if( title == 'test') {
                     //body: data,
                     // data: tableEntries[index].entry,
                     data: data,
-                    success: function(data){
+                    success: function(data2){
                       console.log('---success2--');
-                	   	console.log('rights2: '+data.feed.rights.$t)
-                	    console.dir(data);
+                	   	console.log('rights2: '+data2.feed.rights.$t)
+                	    console.dir(data2);
                     },
                     error: function (jqXHR, textStatus) {
         			        console.log('fail');
