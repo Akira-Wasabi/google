@@ -38,7 +38,7 @@ https://accounts.google.com/o/oauth2/auth?openid.realm&scope=email profile openi
 </head>
 <body>
 ----------------------------
-TEST37
+TEST38
 ----------------------------
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -218,9 +218,9 @@ if( title == 'test') {
                 headers: { 
                     'GData-Version': '2',
                     'Authorization': 'Bearer' + ' ' + tableEntry.access_token,
-                    'If-Match': '*'
+                    'If-Match': '*',
                     // 'Authorization':'Bearer' + ' ' + token
-                    //"Content-Type":'image/jpeg',
+                    'Content-Type':'application/json'
                     //'Content-Length':data.length,
                     //"MIME-version":"1.0"
                 	
