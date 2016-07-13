@@ -38,7 +38,7 @@ https://accounts.google.com/o/oauth2/auth?openid.realm&scope=email profile openi
 </head>
 <body>
 ----------------------------
-TEST25
+TEST26
 ----------------------------
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -190,10 +190,11 @@ if( title == 'test') {
         	
         	tableEntries[index].entry.rights.$t=new_access;
         	
-        	var albumData= {'pipo':'bimbo'};
-        	//albumData.encoding= "UTF-8";
-        	//albumData.version= "1.0";
-        	//albumData.feed=tableEntries[index].entry;
+        	console.dir(tableEntries[index].entry);
+        	var albumData= {};
+        	albumData.encoding= "UTF-8";
+        	albumData.version= "1.0";
+        	albumData.feed=tableEntries[index].entry;
         	console.dir(albumData);
         	
         	//console.log(JSON.stringify(data));
@@ -224,7 +225,7 @@ if( title == 'test') {
                 	
                 	console.log('rights: '+data.feed.rights.$t)
                 	console.dir(data);
-                	
+return;
                 	data.feed.rights.$t='public';
                 	
         	        jQuery.ajax(
