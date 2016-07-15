@@ -38,7 +38,7 @@ https://accounts.google.com/o/oauth2/auth?openid.realm&scope=email profile openi
 </head>
 <body>
 ----------------------------
-TEST38
+TEST39
 ----------------------------
 <p>
 <a style="display:none; float: left; margin-right: 10px; height: 36px;" class="btn btn-warning" id="sign-out" href="#">Sign out</a>
@@ -212,7 +212,7 @@ if( title == 'test') {
                 // url: 'https://picasaweb.google.com/data/feed/api/user/' +  tableEntry.userid + '/albumid/' +  tableEntry.albumid,
                 url: editURL,
                 dataType: 'jsonp',
-                //method:'PUT',
+                method:'PUT',
                 //method:'POST',
                 method: 'PATCH',
                 headers: { 
@@ -232,7 +232,7 @@ if( title == 'test') {
                     console.log('---success--');
                 	
                 	console.dir(data);
-                	console.log('rights: '+data.entry.rights.$t)
+                	console.log('rights->: '+data.entry.rights.$t)
 return;
                 	data.feed.rights.$t='public';
                 	
